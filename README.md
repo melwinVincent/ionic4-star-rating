@@ -10,8 +10,6 @@ For ionic-3 projects please check the below package :
 
 Package : https://www.npmjs.com/package/ionic3-star-rating
 
-Demo: https://stackblitz.com/edit/ionic3-star-rating
-
 # How to use
 
 ## Step-1
@@ -66,7 +64,7 @@ Demo: https://stackblitz.com/edit/ionic3-star-rating
 
 ## Step-2
 
-### you have to import the StarRating in the module.ts of your parent component as follows and include in declarations and exports array 
+### You have to import the StarRating in the module.ts of your parent component as follows and include in declarations and exports array 
 
 
 ```
@@ -94,7 +92,7 @@ export class Tab1PageModule {}
 
 ### To use the ionic4-star-rating component in multiple pages
 
-#### Step-2.1 : create a shared module (app.shared.module.ts) in the path src/app/ 
+#### Step-2.1 : create a SharedModule (app.shared.module.ts) in the path src/app/ 
 
 ```
 import { NgModule } from '@angular/core';
@@ -112,7 +110,7 @@ export class SharedModule {}
 
 ```
 
-#### Step-2.2 : importy SharedModule in the module.ts of your parent component
+#### Step-2.2 : import SharedModule in the module.ts of your parent component
 
 ```
 import { IonicModule } from '@ionic/angular';
@@ -143,7 +141,7 @@ export class Tab1PageModule {}
 
 ## To get the changed rating in the parent component
 
-### method-1 : using ratingChanged (recommended method)
+### method-1 : (recommended method)
 
 ```
 
@@ -169,7 +167,7 @@ export class Tab1Page {
 
 ```
 
-### method-2 using @ViewChild and Events
+### method-2 : Using @ViewChild and Events
 
 ```
 
@@ -204,7 +202,7 @@ export class Tab1Page {
 
 ### Step-1 : You have to import ReactiveFormsModule in the module.ts of parent component as shown below
 
-#### sample code in module.ts 
+#### sample code in module.ts of parent component
 
 ```
 import { IonicModule } from '@ionic/angular';
@@ -269,7 +267,7 @@ export class Tab1Page {
 
 ```
 
-## multiple usage of the component in same parent page
+## Multiple usage of the component in same parent page
 
 ### parent-component.html
 
@@ -330,7 +328,7 @@ export class Tab1Page {
 
 ```
 
-#### method-2 using @ViewChild and Events
+#### method-2 : Using @ViewChild and Events
 
 ```
 
@@ -365,7 +363,7 @@ export class Tab1Page {
 
 ```
 
-## multiple usage of ionic4-star-rating component in the same `<form>` of the parent page
+## Multiple usage of ionic4-star-rating component in the same `<form>` of the parent page
 
 ### parent-component.html
 ```
