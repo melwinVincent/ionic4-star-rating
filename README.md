@@ -2,7 +2,7 @@
 
 You can give your custom icons, custom color, custom font-size and also make it read only. 
 Can use it multiple times in a single page/multiple pages and get the changed rating in the parent component 
-Can also be used inside the <form> component 
+Can also be used inside the `<form>` component 
 
 Easy to integrate with your ionic-4 projects. 
 
@@ -32,7 +32,7 @@ Demo: https://stackblitz.com/edit/ionic3-star-rating
     </ionic4-star-rating>
 ```
 
-### to use inside the <form> component
+### to use inside the `<form>` component
 
 ```
     <form [formGroup]="customForm">
@@ -60,7 +60,7 @@ Demo: https://stackblitz.com/edit/ionic3-star-rating
 * rating (string or number): default is set to 3. input can be of type **number** or **string** (*assign any number from 1 to 5, floating numbers are also accepted, Math.round(parseFloat(rating) is done for all inputs*). 
 * fontSize (string) : can specify the font-size for the icon ( should be a valid string as used in css, a number followed by letters 'px', default is set to '28px'). 
 * ratingChanged (funtion) : used to handle the rating change in the parent component and do your stuff
-* formControlName : only if you are using the ionic4-star-rating component inside the <form> component  
+* formControlName : only if you are using the ionic4-star-rating component inside the `<form>` component  
 
 ## Step-2
 
@@ -198,7 +198,7 @@ export class Tab1Page {
 
 ```
 
-## To get the changed rating in the parent component if you want to use ionic4-star-rating component inside <form> component  
+## To get the changed rating in the parent component if you want to use ionic4-star-rating component inside `<form>` component  
 
 ### Step-1 : You have to import ReactiveFormsModule in the module.ts of parent component as shown below
 
@@ -363,7 +363,7 @@ export class Tab1Page {
 
 ```
 
-## multiple usage of ionic4-star-rating component in the same <form> of the parent page
+## multiple usage of ionic4-star-rating component in the same `<form>` of the parent page
 
 ### parent-component.html
 ```
