@@ -22,9 +22,13 @@ export declare class StarRating implements ControlValueAccessor, OnInit {
     defaultColor: string;
     activeIcon: string;
     defaultIcon: string;
+    halfIcon: string;
+    halfStar: string;
+    maxRating: number;
     fontSize: string;
     Math: any;
     parseFloat: any;
+    iconsArray: number[];
     constructor(events: Events);
     changeRating(event: any): void;
 }

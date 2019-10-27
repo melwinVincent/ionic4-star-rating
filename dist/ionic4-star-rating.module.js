@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { StarRating } from './components/ionic4-star-rating-component';
 import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 var StarRatingModule = /** @class */ (function () {
     function StarRatingModule() {
     }
@@ -20,7 +21,8 @@ var StarRatingModule = /** @class */ (function () {
     StarRatingModule = StarRatingModule_1 = __decorate([
         NgModule({
             imports: [
-                IonicModule
+                IonicModule,
+                CommonModule
             ],
             declarations: [
                 StarRating

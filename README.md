@@ -1,8 +1,15 @@
 # Ionic4 Star Rating
 
-You can give your custom icons, custom color, custom font-size and also make it read only. 
-Can use it multiple times in a single page/multiple pages and get the changed rating in the parent component 
-Can also be used inside the `<form>` component 
+You can give your custom icons, custom color, custom font-size and also make it read-only.  
+
+You can specify the total number of icons to be displayed, default is set to 5. You may change this to 10 star rating component or 7 star rating component depending on your requirement.  
+
+**Supports Half Star Rating.**    
+Single tap on default-star-icon changes it to half-star-icon, tap on half-star-icon changes it to full-star-icon and tap on full-star-icon changes it to half-star-icon. The rating value then steps by 0.5 instead of 1.  
+
+You can use it multiple times in a single page/multiple pages and get the changed rating value in the parent component.  
+
+You can also use it inside the `<form>` component (multiple use inside `<form>` is also supported).  
 
 Easy to integrate with your ionic-4 projects. 
 
@@ -52,6 +59,9 @@ For ionic-3 projects please check this package : https://www.npmjs.com/package/i
 
 * activeIcon (string) : can specify the icon name for active rating (icon name should be from the https://ionicframework.com/docs/ionicons/  ,  default is set to 'ios-star');
 * defaultIcon (string): can specify the default icon name (icon name should be from the https://ionicframework.com/docs/ionicons/  , default is set to 'ios-star-outline');
+* halfIcon (string) : can specify the icon name for active half rating (icon name should be from the https://ionicframework.com/docs/ionicons/  ,  default is set to 'ios-star-half');
+* halfStar (string) : to support half star rating set this to 'true', default is set to 'false'. The rating value then steps by 0.5 instead of 1. Single tap on defaultIcon changes it to halfIcon , tap on halfIcon changes it to activeIcon and tap on activeIcon changes it to halfIcon again.
+* maxRating (number) : can specify the total number of icons to be displayed, default is set to 5. You may change this to 10 star rating component or 7 star rating component depending on your requirement.
 * activeColor (string): can specify the active color for the active rating icon (should be a valid color code, default is set to '#488aff')
 * defaultColor (string): can specify the default color for the rating icon (should be a valid color code, default is set to '#f4f4f4')
 * readonly (string): default is set to "false", change to "true" and make it read only. End user won't be able to change the rating then.
@@ -62,78 +72,38 @@ For ionic-3 projects please check this package : https://www.npmjs.com/package/i
 
 ## Step-2
 
-### You have to import the StarRating in the module.ts of your parent component as follows and include in declarations and exports array 
+### You have to import the StarRatingModule in the module.ts of your parent component as follows and include in imports array 
 
 
 ```
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { Tab1Page } from './tab1.page';
-import { StarRating } from 'ionic4-star-rating';
+import { StarRatingModule } from 'ionic4-star-rating';
 
 @NgModule({
-  declarations: [Tab1Page, StarRating],
   imports: [
-    IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: Tab1Page }])
+    IonicModule,
+    StarRatingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: Tab1Page
+      }
+    ])
   ],
-  exports: [ StarRating ]
-}) 
-export class Tab1PageModule {}
-
-```
-
-### To use the ionic4-star-rating component in multiple pages
-
-#### Step-2.1 : create a SharedModule (app.shared.module.ts) in the path src/app/ 
-
-```
-import { NgModule } from '@angular/core';
-import { CommonModule } from "@angular/common";
-import { IonicModule } from '@ionic/angular';
-import { StarRating } from 'ionic4-star-rating';
-@NgModule({
-  declarations: [ StarRating ],
-  exports: [ StarRating ],
-  imports: [
-    CommonModule, IonicModule
-  ]
-})
-export class SharedModule {}
-
-```
-
-#### Step-2.2 : import SharedModule in the module.ts of your parent component
-
-```
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tab1Page } from './tab1.page';
-import { SharedModule } from './../app.shared.module';
-
-@NgModule({
   declarations: [Tab1Page],
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    SharedModule,
-    RouterModule.forChild([{ path: '', component: Tab1Page }])
-  ],
-  exports: []
-}) 
+  exports: [ ]
+})
 export class Tab1PageModule {}
 
 ```
-
 
 ## Step-3
 
@@ -429,6 +399,12 @@ export class Tab1Page {
 
 }
 
+```
+### common event for all instances in a page (useful in some specific scenarios)
+```
+this.events.subscribe('star-rating:changed', (rating) => {
+    console.log("changed rating: ",rating);
+});
 ```
 
 ## Contact
