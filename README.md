@@ -72,78 +72,38 @@ For ionic-3 projects please check this package : https://www.npmjs.com/package/i
 
 ## Step-2
 
-### You have to import the StarRating in the module.ts of your parent component as follows and include in declarations and exports array 
+### You have to import the StarRatingModule in the module.ts of your parent component as follows and include in imports array 
 
 
 ```
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { Tab1Page } from './tab1.page';
-import { StarRating } from 'ionic4-star-rating';
+import { StarRatingModule } from 'ionic4-star-rating';
 
 @NgModule({
-  declarations: [Tab1Page, StarRating],
   imports: [
-    IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: Tab1Page }])
+    IonicModule,
+    StarRatingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: Tab1Page
+      }
+    ])
   ],
-  exports: [ StarRating ]
-}) 
-export class Tab1PageModule {}
-
-```
-
-### To use the ionic4-star-rating component in multiple pages
-
-#### Step-2.1 : create a SharedModule (app.shared.module.ts) in the path src/app/ 
-
-```
-import { NgModule } from '@angular/core';
-import { CommonModule } from "@angular/common";
-import { IonicModule } from '@ionic/angular';
-import { StarRating } from 'ionic4-star-rating';
-@NgModule({
-  declarations: [ StarRating ],
-  exports: [ StarRating ],
-  imports: [
-    CommonModule, IonicModule
-  ]
-})
-export class SharedModule {}
-
-```
-
-#### Step-2.2 : import SharedModule in the module.ts of your parent component
-
-```
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tab1Page } from './tab1.page';
-import { SharedModule } from './../app.shared.module';
-
-@NgModule({
   declarations: [Tab1Page],
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    SharedModule,
-    RouterModule.forChild([{ path: '', component: Tab1Page }])
-  ],
-  exports: []
-}) 
+  exports: [ ]
+})
 export class Tab1PageModule {}
 
 ```
-
 
 ## Step-3
 

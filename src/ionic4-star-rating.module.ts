@@ -1,10 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { StarRating } from './components/ionic4-star-rating-component';
 import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
  
 @NgModule({
     imports: [
-        IonicModule
+        IonicModule,
+        CommonModule        
     ],
     declarations: [
         StarRating
