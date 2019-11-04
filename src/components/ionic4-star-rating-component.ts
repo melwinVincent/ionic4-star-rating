@@ -34,7 +34,7 @@ const CSS_STYLE = `
 export class StarRating implements ControlValueAccessor, OnInit{
 
   ngOnInit(): void {
-    this.rating = this.rating || 3; //default after input`s initialization
+    this.rating = typeof this.rating !== 'undefined' ? this.rating : 3; //default after input`s initialization
     for(var i=0; i < this.maxRating; i++) {
       this.iconsArray.push(i);
     }
