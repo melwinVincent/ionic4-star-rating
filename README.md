@@ -379,7 +379,7 @@ export class Tab1Page {
 }
 ```
 ### Common event for all instances in a page (useful in some specific scenarios)
-```typscript
+```typescript
 this.events.subscribe('star-rating:changed', (rating) => {
   console.log("Changed rating: ", rating);
 });
