@@ -19,41 +19,40 @@ For ionic-3 projects please check this package : https://www.npmjs.com/package/i
 
 ## Step-1
 
-### Install it
+### Install
+
 ```npm i ionic4-star-rating```
 
-### add the ionic4-star-rating component in your page.html (parent component) as follows
+### Add the ionic4-star-rating component in your page.html (parent component)
 
+```html
+<ionic4-star-rating #rating
+  activeIcon = "ios-star"
+  defaultIcon = "ios-star-outline"
+  activeColor = "#488aff" 
+  defaultColor = "#f4f4f4"
+  eadonly="false"
+  rating="3"
+  fontSize = "32px"
+  (ratingChanged)="logRatingChange($event)">
+</ionic4-star-rating>
 ```
-    <ionic4-star-rating #rating
-        activeIcon = "ios-star"
-        defaultIcon = "ios-star-outline"
-        activeColor = "#488aff" 
-        defaultColor = "#f4f4f4"
-        readonly="false"
-        rating="3"
-        fontSize = "32px"
-        (ratingChanged)="logRatingChange($event)">
-    </ionic4-star-rating>
-```
 
-### to use inside the `<form>` component
+### You can also use the component inside a `<form>` component
 
-```
-    <form [formGroup]="customForm">
-
-        <ionic4-star-rating #rating 
-            activeIcon = "ios-star"
-            defaultIcon = "ios-star-outline"
-            activeColor = "#d1301a"
-            defaultColor = "#aaaaaa"
-            readonly = "false"
-            fontSize = "32px"
-            (ratingChanged)="logRatingChange($event)"
-            formControlName="starRating">
-        </ionic4-star-rating>
-
-    </form>
+```html
+<form [formGroup]="customForm">
+  <ionic4-star-rating #rating 
+    activeIcon = "ios-star"
+    defaultIcon = "ios-star-outline"
+    activeColor = "#d1301a"
+    defaultColor = "#aaaaaa"
+    readonly = "false"
+    fontSize = "32px"
+    (ratingChanged)="logRatingChange($event)"
+    formControlName="starRating">
+  </ionic4-star-rating>
+</form>
 ```
 ## Options (all are optional, default values are set in the component itself)
 
@@ -75,8 +74,7 @@ For ionic-3 projects please check this package : https://www.npmjs.com/package/i
 ### You have to import the StarRatingModule in the module.ts of your parent component as follows and include in imports array 
 
 
-```
-
+```typescript
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -102,7 +100,6 @@ import { StarRatingModule } from 'ionic4-star-rating';
   exports: [ ]
 })
 export class Tab1PageModule {}
-
 ```
 
 ## Step-3
@@ -111,8 +108,7 @@ export class Tab1PageModule {}
 
 ### method-1 : (recommended method)
 
-```
-
+```typescript
 import { Component } from '@angular/core';
 
 @Component({
@@ -126,21 +122,18 @@ export class Tab1Page {
         // do your stuff
     }
 
-    logRatingChange(rating){
-        console.log("changed rating: ",rating);
+    logRatingChange(rating) {
+        console.log("Changed rating: ", rating);
         // do your stuff
     }
 }
-
-
 ```
 
 ### method-2 : Using @ViewChild and Events
 
-```
-
+```typescript
 import { Component, ViewChild } from '@angular/core';
-import { Events } from '@ionic/angular'
+import { Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -149,21 +142,19 @@ import { Events } from '@ionic/angular'
 })
 export class Tab1Page {
 
-    @ViewChild('rating') rating : any;
+    @ViewChild('rating') rating: any;
 
     constructor() {
         // do your stuff
     }
 
     ngOnInit() {
-        this.events.subscribe(this.rating.eventInfo.topic, ()=> {
-            console.log("changed rating", this.rating._rating);
+        this.events.subscribe(this.rating.eventInfo.topic, () => {
+            console.log("Changed rating: ", this.rating._rating);
             // do your stuff
         });
     }
 }
-
-
 ```
 
 ## To get the changed rating in the parent component if you want to use ionic4-star-rating component inside `<form>` component  
@@ -172,7 +163,7 @@ export class Tab1Page {
 
 #### sample code in module.ts of parent component
 
-```
+```typescript
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -195,11 +186,11 @@ import { ReactiveFormsModule} from '@angular/forms';
   exports: []
 }) 
 export class Tab1PageModule {}
-
 ```
+
 ### Step-2 : Make the following changes in the component.ts of parent component 
 
-```
+```typescript
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -213,62 +204,56 @@ export class Tab1Page {
 
     customForm: FormGroup;
     
-    constructor( private formBuilder: FormBuilder ) {
+    constructor( private formBuilder: FormBuilder) {
         // do your stuff
     }
     
     ngOnInit() {
-
         this.customForm = this.formBuilder.group({
             // set default initial value
             starRating: [3]
         });
-
     }
 
-    logRatingChange(rating){
-        console.log("changed rating: ",rating);
+    logRatingChange(rating) {
+        console.log("Changed rating: ", rating);
         // do your stuff
     }
-
 }
-
 ```
 
 ## Multiple usage of the component in same parent page
 
 ### parent-component.html
 
-```
-    <ionic4-star-rating #rating
-        activeIcon = "ios-star"
-        defaultIcon = "ios-star-outline"
-        activeColor = "#ff0000"
-        defaultColor = "#aaaaaa"
-        readonly = "false"
-        rating = "2"
-        fontSize = "32px"
-        (ratingChanged)="logRatingChange($event)">
-    </ionic4-star-rating>
+```html
+<ionic4-star-rating #rating
+  activeIcon = "ios-star"
+  defaultIcon = "ios-star-outline"
+  activeColor = "#ff0000"
+  defaultColor = "#aaaaaa"
+  readonly = "false"
+  rating = "2"
+  fontSize = "32px"
+  (ratingChanged)="logRatingChange($event)">
+</ionic4-star-rating>
 
-    <ionic4-star-rating #rating2
-        activeIcon = "ios-star"
-        defaultIcon = "ios-star-outline"
-        activeColor = "#d1301a"
-        defaultColor = "#aaaaaa"
-        readonly = "false"
-        rating = "3"
-        fontSize = "32px"
-        (ratingChanged)="logRatingChange2($event)">
-    </ionic4-star-rating>
-
+<ionic4-star-rating #rating2
+  activeIcon = "ios-star"
+  defaultIcon = "ios-star-outline"
+  activeColor = "#d1301a"
+  defaultColor = "#aaaaaa"
+  readonly = "false"
+  rating = "3"
+  fontSize = "32px"
+  (ratingChanged)="logRatingChange2($event)">
+</ionic4-star-rating>
 ```
 ### parent-component.ts
 
 #### method-1
 
-```
-
+```typescript
 import { Component } from '@angular/core';
 
 @Component({
@@ -283,23 +268,21 @@ export class Tab1Page {
         // do your stuff
     }
 
-    logRatingChange(rating){
-        console.log("changed rating: ",rating);
+    logRatingChange(rating) {
+        console.log("Changed rating: ", rating);
         // do your stuff
     }
 
-    logRatingChange2(rating){
-        console.log("changed rating2: ",rating);
+    logRatingChange2(rating) {
+        console.log("Changed rating2: ", rating);
         // do your stuff
     }
 }
-
 ```
 
 #### method-2 : Using @ViewChild and Events
 
-```
-
+```typescript
 import { Component, ViewChild } from '@angular/core';
 import { Events } from '@ionic/angular'
 
@@ -318,48 +301,44 @@ export class Tab1Page {
     }
 
     ngOnInit() {
-        this.events.subscribe(this.rating.eventInfo.topic, ()=> {
-            console.log("changed rating", this.rating._rating);
+        this.events.subscribe(this.rating.eventInfo.topic, () => {
+            console.log("Changed rating: ", this.rating._rating);
             // do your stuff
         });
-        this.events.subscribe(this.rating2.eventInfo.topic, ()=> {
-            console.log("changed rating2", this.rating2._rating);
+        this.events.subscribe(this.rating2.eventInfo.topic, () => {
+            console.log("Changed rating2: ", this.rating2._rating);
             // do your stuff
         });
     }
 }
-
 ```
 
 ## Multiple usage of ionic4-star-rating component in the same `<form>` of the parent page
 
 ### parent-component.html
-```
-    <form [formGroup]="customForm">
+```html
+<form [formGroup]="customForm">
+  <ionic4-star-rating #rating 
+    activeColor = "#ff0000"
+    defaultColor = "#aaaaaa"
+    readonly = "false"
+    (ratingChanged)="logRatingChange($event)"
+    formControlName="starRating">
+  </ionic4-star-rating>
 
-      <ionic4-star-rating #rating 
-          activeColor = "#ff0000"
-          defaultColor = "#aaaaaa"
-          readonly = "false"
-          (ratingChanged)="logRatingChange($event)"
-          formControlName="starRating">
-      </ionic4-star-rating>
-
-      <ionic4-star-rating #rating2 
-          activeColor = "#ff0000"
-          defaultColor = "#aaaaaa"
-          readonly = "false"
-          (ratingChanged)="logRatingChange2($event)"
-          formControlName="starRating2">
-      </ionic4-star-rating>
-
-    </form>
+  <ionic4-star-rating #rating2 
+    activeColor = "#ff0000"
+    defaultColor = "#aaaaaa"
+    readonly = "false"
+    (ratingChanged)="logRatingChange2($event)"
+    formControlName="starRating2">
+  </ionic4-star-rating>
+</form>
 ```
 
 ### parent-component.ts
 
-```
-
+```typescript
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -373,7 +352,7 @@ export class Tab1Page {
 
     customForm: FormGroup;
     
-    constructor( private formBuilder: FormBuilder ) {
+    constructor( private formBuilder: FormBuilder) {
         // do your stuff
     }
     
@@ -387,23 +366,22 @@ export class Tab1Page {
 
     }
 
-    logRatingChange(rating){
-        console.log("changed rating: ",rating);
+    logRatingChange(rating) {
+        console.log("Changed rating: ", rating);
         // do your stuff
     }
 
-    logRatingChange2(rating){
-        console.log("changed rating2: ",rating);
+    logRatingChange2(rating) {
+        console.log("Changed rating2: ", rating);
         // do your stuff
     }
 
 }
-
 ```
-### common event for all instances in a page (useful in some specific scenarios)
-```
+### Common event for all instances in a page (useful in some specific scenarios)
+```typescript
 this.events.subscribe('star-rating:changed', (rating) => {
-    console.log("changed rating: ",rating);
+  console.log("Changed rating: ", rating);
 });
 ```
 
